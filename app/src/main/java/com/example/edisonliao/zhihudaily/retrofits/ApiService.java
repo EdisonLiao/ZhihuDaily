@@ -10,7 +10,9 @@ import retrofit2.http.GET;
  * 最新消息
  */
 
-public interface LastNewsService {
+public interface ApiService {
+
+    String BASE_URL = "https://news-at.zhihu.com/";
 
     @GET("api/4/news/latest")
     Observable<LastNewsResponse> getLastNewsService();
