@@ -2,12 +2,18 @@ package com.example.edisonliao.zhihudaily.presenter;
 
 
 
-import org.reactivestreams.Subscriber;
 
-import io.reactivex.Flowable;
+import com.example.edisonliao.zhihudaily.entity.LastNewsResponse;
+import com.example.edisonliao.zhihudaily.retrofits.ApiService;
+import com.example.edisonliao.zhihudaily.retrofits.RetrofitInstanceManger;
+
+import java.util.concurrent.Callable;
+
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -15,12 +21,14 @@ import io.reactivex.schedulers.Schedulers;
  * P层的基类
  */
 
-public class BasePresenter<V> {
-
+public class BasePresenter<V,M> {
+    private static final String TAG = "BasePresenter";
     private V mView;
     private CompositeDisposable mComposite;
+    protected ApiService mApiService;
     public void attachView(V mView){
         this.mView = mView;
+        mApiService = RetrofitInstanceManger.getInstance().create(ApiService.class);
     }
 
     public void detachView(){
@@ -35,13 +43,15 @@ public class BasePresenter<V> {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public void addSubscription(Observable observable, Subscriber subscriber) {
+    public void addSubscription(Observable<M> observable, DisposableObserver<M> subscriber) {
         if (mComposite == null){
             mComposite = new CompositeDisposable();
         }
-        mComposite.add();
+        mComposite.add(
+                observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(subscriber)
+
+        );
     }
-
-
 }

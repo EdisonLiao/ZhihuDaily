@@ -2,7 +2,7 @@ package com.example.edisonliao.zhihudaily.retrofits;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -13,8 +13,8 @@ public class RetrofitInstanceManger {
     private static Retrofit mRetrofit;
 
     public static Retrofit getInstance(){
-        if (mRetrofit == null){
-            synchronized (RetrofitInstanceManger.class) {
+        synchronized (RetrofitInstanceManger.class) {
+            if (mRetrofit == null) {
                 init();
             }
         }
@@ -27,7 +27,7 @@ public class RetrofitInstanceManger {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
                 .build();
     }

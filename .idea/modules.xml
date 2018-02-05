@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Zhihu.iml" filepath="$PROJECT_DIR$/Zhihu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZhihuDaily.iml" filepath="$PROJECT_DIR$/ZhihuDaily.iml" />
       <module fileurl="file://E:\Android_Dev\studioProject\Zhihu\ZhihuDaily.iml" filepath="E:\Android_Dev\studioProject\Zhihu\ZhihuDaily.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

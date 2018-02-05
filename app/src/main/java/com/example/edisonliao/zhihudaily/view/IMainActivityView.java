@@ -4,6 +4,8 @@ import com.example.edisonliao.zhihudaily.entity.LastNewsResponse;
 import com.example.edisonliao.zhihudaily.entity.LastNewsStories;
 import com.example.edisonliao.zhihudaily.entity.LastNewsTopStories;
 
+import java.util.List;
+
 /**
  * Created by edisonliao on 2018/2/2.
  * MainActivity的V层接口
@@ -11,7 +13,7 @@ import com.example.edisonliao.zhihudaily.entity.LastNewsTopStories;
 
 public interface IMainActivityView {
 
-    void showLastNewsBannerImg(LastNewsTopStories lastNewsTopStories);
+    void showLastNewsBannerImg(List<LastNewsTopStories> lastNewsTopStories);
 
     void showLastNews(LastNewsStories lastNewsStories);
 

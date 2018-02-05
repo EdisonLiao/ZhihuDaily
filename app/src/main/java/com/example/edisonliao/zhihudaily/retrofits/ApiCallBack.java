@@ -1,15 +1,14 @@
 package com.example.edisonliao.zhihudaily.retrofits;
 
-import android.util.Log;
 
+import io.reactivex.observers.DisposableObserver;
 import retrofit2.HttpException;
-import rx.Subscriber;
 
 /**
  * Created by EdisonLiao on 2018/2/2.
  */
 
-public abstract class ApiCallBack<M> extends Subscriber<M> {
+public abstract class ApiCallBack<M> extends DisposableObserver<M> {
     private static final String TAG = "ApiCallBack";
     public abstract void onFinish();
     public abstract void onSuccess(M model);
@@ -18,7 +17,7 @@ public abstract class ApiCallBack<M> extends Subscriber<M> {
 
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
         onFinish();
     }
 
