@@ -40,10 +40,7 @@ public class BasePresenter<V> {
         if (mComposite == null){
             mComposite = new CompositeDisposable();
         }
-        mComposite.add(Flowable.just(observable).observeOn(Schedulers.io())
-                       .subscribeOn(AndroidSchedulers.mainThread())
-                       .subscribeWith(subscriber)
-        );
+        mComposite.add();
     }
 
 

@@ -2,6 +2,7 @@ package com.example.edisonliao.zhihudaily.retrofits;
 
 import com.example.edisonliao.zhihudaily.entity.LastNewsResponse;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
@@ -15,6 +16,6 @@ public interface ApiService {
     String BASE_URL = "https://news-at.zhihu.com/";
 
     @GET("api/4/news/latest")
-    Observable<LastNewsResponse> getLastNewsService();
+    Flowable<LastNewsResponse> getLastNewsService();
 
 }
