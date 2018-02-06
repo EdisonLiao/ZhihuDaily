@@ -10,6 +10,7 @@ import com.example.edisonliao.zhihudaily.utils.GlideUtils;
 import com.example.edisonliao.zhihudaily.view.IMainActivityView;
 import com.google.gson.Gson;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements IMainActivityView{
 
     private MainActivityPresenter mMainPresenter;
-//    @BindView(R.id.banner)
-//    Banner mBanner;
+    @BindView(R.id.banner)
+    Banner mBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         for (LastNewsTopStories stories : lastNewsTopStories){
             list.add(stories.getImage());
         }
-//        mBanner.setImageLoader(GlideUtils.getInstance());
-//        mBanner.setImages(list);
-//        mBanner.start();
+
+        mBanner.setImageLoader(GlideUtils.getInstance());
+        mBanner.isAutoPlay(true);
+        mBanner.setDelayTime(1500);
+        mBanner.setImages(list);
+        mBanner.start();
 
     }
 
