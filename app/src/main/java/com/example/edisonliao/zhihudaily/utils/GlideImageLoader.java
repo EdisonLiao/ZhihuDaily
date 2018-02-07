@@ -10,13 +10,13 @@ import com.youth.banner.loader.ImageLoader;
  * Created by EdisonLiao on 2018/2/5.
  */
 
-public class GlideUtils extends ImageLoader{
+public class GlideImageLoader extends ImageLoader{
 
-    private static GlideUtils mInstance;
+    private static GlideImageLoader mInstance;
 
-    public static GlideUtils getInstance(){
+    public static GlideImageLoader getInstance(){
         if (mInstance == null){
-            mInstance = new GlideUtils();
+            mInstance = new GlideImageLoader();
         }
         return mInstance;
     }

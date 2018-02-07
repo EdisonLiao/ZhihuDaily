@@ -6,11 +6,9 @@ import android.os.Bundle;
 import com.example.edisonliao.zhihudaily.entity.LastNewsStories;
 import com.example.edisonliao.zhihudaily.entity.LastNewsTopStories;
 import com.example.edisonliao.zhihudaily.presenter.MainActivityPresenter;
-import com.example.edisonliao.zhihudaily.utils.GlideUtils;
+import com.example.edisonliao.zhihudaily.utils.GlideImageLoader;
 import com.example.edisonliao.zhihudaily.view.IMainActivityView;
-import com.google.gson.Gson;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
             list.add(stories.getImage());
         }
 
-        mBanner.setImageLoader(GlideUtils.getInstance());
+        mBanner.setImageLoader(GlideImageLoader.getInstance());
         mBanner.isAutoPlay(true);
         mBanner.setDelayTime(1500);
         mBanner.setImages(list);
@@ -62,5 +60,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     @Override
     public void showLastNews(LastNewsStories lastNewsStories) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        mMainPresenter.detachView();//防止内存泄漏
+        super.onDestroy();
     }
 }

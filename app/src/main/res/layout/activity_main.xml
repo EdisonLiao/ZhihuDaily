@@ -22,11 +22,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
 
+            <TextView
+                android:id="@+id/news_type_tv"
+                android:layout_below="@id/banner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/banner" />
+                android:layout_below="@id/news_type_tv" />
 
         </RelativeLayout>
 
