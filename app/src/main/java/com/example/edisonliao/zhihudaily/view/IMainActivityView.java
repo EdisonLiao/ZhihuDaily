@@ -15,7 +15,7 @@ public interface IMainActivityView {
 
     void showLastNewsBannerImg(List<LastNewsTopStories> lastNewsTopStories);
 
-    void showLastNews(LastNewsStories lastNewsStories);
+    void showLastNews(List<LastNewsStories> lastNewsStories);
 
 
 

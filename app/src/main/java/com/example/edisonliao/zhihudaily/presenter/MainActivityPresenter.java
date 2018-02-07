@@ -30,6 +30,7 @@ public class MainActivityPresenter extends BasePresenter<IMainActivityView,LastN
             public void onSuccess(LastNewsResponse model) {
                 Log.e(TAG,"onSuccess");
                 mMainView.showLastNewsBannerImg(model.getTopStories());
+                mMainView.showLastNews(model.getStories());
             }
 
             @Override
