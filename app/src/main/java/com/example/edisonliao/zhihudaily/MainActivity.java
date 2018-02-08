@@ -1,5 +1,6 @@
 package com.example.edisonliao.zhihudaily;
 
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     }
 
     private void handleScrollEvent(){
-        
+        Rect rect = new Rect();
+        boolean see = mBanner.getGlobalVisibleRect(rect);
     }
 
     private void initRecyclerView(){
