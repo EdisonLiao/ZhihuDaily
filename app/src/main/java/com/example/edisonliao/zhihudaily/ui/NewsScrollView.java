@@ -14,6 +14,16 @@ public class NewsScrollView extends ScrollView {
     private static final String TAG = "NewsScrollView";
     private float mLastX;
     private float mLastY;
+    private ScrollOverBannerListener mScrollListener;
+
+
+    public interface ScrollOverBannerListener{
+        void scrollOverBanner();
+    }
+
+    public void addScrollOverBannerLisenter(ScrollOverBannerListener listener){
+        mScrollListener = listener;
+    }
 
     public NewsScrollView(Context context) {
         super(context);
@@ -32,39 +42,13 @@ public class NewsScrollView extends ScrollView {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean intercept = false;
-        int x = (int) ev.getX();
-        int y = (int)ev.getY();
-        switch (ev.getAction()){
-            case MotionEvent.ACTION_DOWN: {
-                intercept = false;
-                break;
-            }
-            case MotionEvent.ACTION_MOVE: {
-                Log.e(TAG,"name1..." + getChildAt(1).getVisibility());
-//                if () {
-//                    intercept = true;
-//                } else {
-//                    intercept = false;
-//                }
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                intercept = false;
-                break;
-            }
-            default:
-                break;
-        }
-
-        mLastY = y;
-        mLastX = x;
-        return intercept;
-    }
-
-    @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
     }
+
+    private int dp2px(Context context,float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(dpValue * scale + 0.5f);
+    }
+
 }

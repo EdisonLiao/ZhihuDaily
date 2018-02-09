@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ScrollView;
 
 import com.example.edisonliao.zhihudaily.adapters.NewsAdapter;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     @BindView(R.id.scrollView)
     ScrollView mScrollView;
     private NewsAdapter mAdapter;
+    private Rect mRect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +44,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         if (mMainPresenter == null){
             mMainPresenter = new MainActivityPresenter(this);
         }
+        mRecycleView.setNestedScrollingEnabled(false);
         initRecyclerView();
         mMainPresenter.loadLastNews();
-
-    }
-
-    private void handleScrollEvent(){
-        Rect rect = new Rect();
-        boolean see = mBanner.getGlobalVisibleRect(rect);
     }
 
     private void initRecyclerView(){
