@@ -16,9 +16,10 @@ import com.example.edisonliao.zhihudaily.R;
  * Created by EdisonLiao on 2018/2/10.
  */
 
-public class NewsItemPopup extends RelativeLayout {
+public class NewsItemPopup extends ViewGroup {
     private int mRadius; //圆半径
     private int mBackgroundColor;//中心按钮的背景色
+    private Context mContext;
 
     public NewsItemPopup(Context context) {
         super(context);
@@ -26,16 +27,19 @@ public class NewsItemPopup extends RelativeLayout {
 
     public NewsItemPopup(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         initAttrs(context,attrs);
     }
 
     public NewsItemPopup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         initAttrs(context,attrs);
     }
 
     public NewsItemPopup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        mContext = context;
         initAttrs(context,attrs);
     }
 
@@ -49,17 +53,19 @@ public class NewsItemPopup extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        measureChildren(widthMeasureSpec, heightMeasureSpec);
+        measureChildren(widthMeasureSpec,heightMeasureSpec);
+
         int width = mRadius;
         int height = mRadius * 2;
-        int centerChildWidth = getChildAt(0).getWidth();//第一个子view是中心的view
+        int centerChildWidth = getChildAt(1).getMeasuredWidth();//第一个子view是中心的view
         if (centerChildWidth >= mRadius/2 ){
-            throw new IllegalArgumentException("center view's width cannot bigger than raduis/2");
+//            throw new IllegalArgumentException("center view's width cannot bigger than raduis/2");
         }
         setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? sizeWidth
                 : width, (heightMode == MeasureSpec.EXACTLY) ? sizeHeight
@@ -69,44 +75,60 @@ public class NewsItemPopup extends RelativeLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int cCount = getChildCount();
-        int cWidth = 0;
-        int cHeight = 0;
         int cl = 0;
         int ct = 0;
         int cr = 0;
         int cb = 0;
-        int cX = 0;
-        int cY = 0;
-        double angle = 0d;
 
-        View centerView = getChildAt(0);//第一个是中心的view
-        int centerX = centerView.getRight();
-        int centerY = centerView.getTop() + centerView.getMeasuredHeight()/2;
-        for (int i = 1;i < cCount;i++){
+        int centerX = getRight();
+        int centerY = mRadius + getTop();
+        for (int i = 0;i < cCount;i++){
             View childView = getChildAt(i);
-            cWidth = getChildAt(i).getMeasuredWidth();
-            cHeight = getChildAt(i).getMeasuredHeight();
             switch (i){   //先做写死5个的吧，不折腾了
+                case 0:
+//                    cl = centerX - childView.getMeasuredWidth();
+//                    ct = centerY - childView.getMeasuredHeight()/2;
+//                    cb = centerY + childView.getMeasuredHeight()/2;
+//                    cr = centerX;
+                    cl = l + 50;
+                    ct = t + 50;
+                    cb = b - 50;
+                    cr = r - 50;
+                    childView.layout(0,ct,cr,cb);
+                    break;
                 case 1:
-                    cX = centerX - (int) Math.round(mRadius * Math.sin(30d));
-                    cY = centerY + (int) Math.round(mRadius * Math.cos(30d));
-
+//                    cl = centerX - (int) Math.round(mRadius * Math.sin(30d));
+//                    cb = centerY + (int) Math.round(mRadius * Math.cos(30d));
+//                    ct = cb - childView.getMeasuredHeight();
+//                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 2:
-
+//                    cl = centerX - (int) Math.round(mRadius * Math.sin(60d));
+//                    cb = centerY + (int) Math.round(mRadius * Math.cos(60d));
+//                    ct = cb - childView.getMeasuredHeight();
+//                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 3:
-
+//                    cl = centerX - mRadius;
+//                    cb = centerY;
+//                    ct = cb - childView.getMeasuredHeight();
+//                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 4:
-
+//                    ct =centerY - (int) Math.round(mRadius * Math.cos(60d));
+//                    cl = centerX - (int) Math.round(mRadius * Math.tan(60d));
+//                    cr = cl + childView.getMeasuredWidth();
+//                    cb = ct + childView.getMeasuredHeight();
                     break;
                 case 5:
-
+//                    ct = centerY - (int) Math.round(mRadius * Math.cos(30d));
+//                    cl = centerX - (int) Math.round(mRadius * Math.tan(30d));
+//                    cr = cl + childView.getMeasuredWidth();
+//                    cb = ct + childView.getMeasuredHeight();
                     break;
             }
 
-        childView.layout(cl,ct,cr,cb);
+
         }
 
     }

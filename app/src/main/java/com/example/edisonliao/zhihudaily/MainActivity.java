@@ -1,5 +1,6 @@
 package com.example.edisonliao.zhihudaily;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
         }
         mRecycleView.setNestedScrollingEnabled(false);
         mScrollView.addScrollOverBannerLisenter(mScrollLinstener);
-//        mFbutton.setOnClickListener(this);
         initRecyclerView();
         mMainPresenter.loadLastNews();
     }
