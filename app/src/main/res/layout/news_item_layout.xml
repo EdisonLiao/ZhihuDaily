@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/news_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="8dp">
 
 
@@ -15,6 +17,7 @@
         android:id="@+id/news_title_tv"
         android:layout_toRightOf="@id/news_iv"
         android:layout_marginLeft="8dp"
+        android:transitionName="@string/trans_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"/>

@@ -22,7 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewsDetailActivity"></activity>
+        <activity
+            android:name=".NewsDetailActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".BaseActivity"
+            android:launchMode="singleInstance"/>
     </application>
 
 </manifest>

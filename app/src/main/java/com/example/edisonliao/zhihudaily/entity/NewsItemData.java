@@ -8,6 +8,15 @@ public class NewsItemData {
 
     private String imgUrl;
     private String txt;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImgUrl() {
         return imgUrl;

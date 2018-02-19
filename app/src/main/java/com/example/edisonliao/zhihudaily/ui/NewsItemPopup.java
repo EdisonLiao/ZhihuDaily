@@ -20,6 +20,8 @@ public class NewsItemPopup extends ViewGroup {
     private int mRadius; //圆半径
     private int mBackgroundColor;//中心按钮的背景色
     private Context mContext;
+    private int mWidth;
+    private int mHeight;
 
     public NewsItemPopup(Context context) {
         super(context);
@@ -33,12 +35,6 @@ public class NewsItemPopup extends ViewGroup {
 
     public NewsItemPopup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
-        initAttrs(context,attrs);
-    }
-
-    public NewsItemPopup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         mContext = context;
         initAttrs(context,attrs);
     }
@@ -58,18 +54,18 @@ public class NewsItemPopup extends ViewGroup {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
-
         measureChildren(widthMeasureSpec,heightMeasureSpec);
 
         int width = mRadius;
         int height = mRadius * 2;
         int centerChildWidth = getChildAt(1).getMeasuredWidth();//第一个子view是中心的view
         if (centerChildWidth >= mRadius/2 ){
-//            throw new IllegalArgumentException("center view's width cannot bigger than raduis/2");
+            throw new IllegalArgumentException("center view's width cannot bigger than raduis/2");
         }
-        setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? sizeWidth
-                : width, (heightMode == MeasureSpec.EXACTLY) ? sizeHeight
-                : height);
+
+        mWidth = (widthMode == MeasureSpec.EXACTLY) ? sizeWidth : width;
+        mHeight = (heightMode == MeasureSpec.EXACTLY) ? sizeHeight : height;
+        setMeasuredDimension(mWidth, mHeight);
     }
 
     @Override
@@ -80,55 +76,49 @@ public class NewsItemPopup extends ViewGroup {
         int cr = 0;
         int cb = 0;
 
-        int centerX = getRight();
-        int centerY = mRadius + getTop();
+        int centerX = mWidth;
+        int centerY = mHeight/2;
         for (int i = 0;i < cCount;i++){
             View childView = getChildAt(i);
             switch (i){   //先做写死5个的吧，不折腾了
                 case 0:
-//                    cl = centerX - childView.getMeasuredWidth();
-//                    ct = centerY - childView.getMeasuredHeight()/2;
-//                    cb = centerY + childView.getMeasuredHeight()/2;
-//                    cr = centerX;
-                    cl = l + 50;
-                    ct = t + 50;
-                    cb = b - 50;
-                    cr = r - 50;
-                    childView.layout(0,ct,cr,cb);
+                    cl = mWidth - childView.getMeasuredWidth();
+                    ct = mHeight/2 - childView.getMeasuredHeight()/2;
+                    cb = mHeight/2 + childView.getMeasuredHeight()/2;
+                    cr = mWidth;
                     break;
                 case 1:
-//                    cl = centerX - (int) Math.round(mRadius * Math.sin(30d));
-//                    cb = centerY + (int) Math.round(mRadius * Math.cos(30d));
-//                    ct = cb - childView.getMeasuredHeight();
-//                    cr = cl + childView.getMeasuredWidth();
+                    cl = centerX - (int) Math.round(mRadius * Math.sin(Math.toRadians(30d)));
+                    cb = centerY + (int) Math.round(mRadius * Math.cos(Math.toRadians(30d)));
+                    ct = cb - childView.getMeasuredHeight();
+                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 2:
-//                    cl = centerX - (int) Math.round(mRadius * Math.sin(60d));
-//                    cb = centerY + (int) Math.round(mRadius * Math.cos(60d));
-//                    ct = cb - childView.getMeasuredHeight();
-//                    cr = cl + childView.getMeasuredWidth();
+                    cl = centerX - (int) Math.round(mRadius * Math.sin(Math.toRadians(60d)));
+                    cb = centerY + (int) Math.round(mRadius * Math.cos(Math.toRadians(60d)));
+                    ct = cb - childView.getMeasuredHeight();
+                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 3:
-//                    cl = centerX - mRadius;
-//                    cb = centerY;
-//                    ct = cb - childView.getMeasuredHeight();
-//                    cr = cl + childView.getMeasuredWidth();
+                    cl = 0;
+                    cb = centerY;
+                    ct = cb - childView.getMeasuredHeight();
+                    cr = cl + childView.getMeasuredWidth();
                     break;
                 case 4:
-//                    ct =centerY - (int) Math.round(mRadius * Math.cos(60d));
-//                    cl = centerX - (int) Math.round(mRadius * Math.tan(60d));
-//                    cr = cl + childView.getMeasuredWidth();
-//                    cb = ct + childView.getMeasuredHeight();
+                    ct = centerY - (int) Math.round(mRadius * Math.cos(Math.toRadians(60d)));
+                    cl = centerX - (int) Math.round(mRadius * Math.sin(Math.toRadians(60d)));
+                    cr = cl + childView.getMeasuredWidth();
+                    cb = ct + childView.getMeasuredHeight();
                     break;
                 case 5:
-//                    ct = centerY - (int) Math.round(mRadius * Math.cos(30d));
-//                    cl = centerX - (int) Math.round(mRadius * Math.tan(30d));
-//                    cr = cl + childView.getMeasuredWidth();
-//                    cb = ct + childView.getMeasuredHeight();
+                    ct = centerY - (int) Math.round(mRadius * Math.cos(Math.toRadians(30d)));
+                    cl = centerX - (int) Math.round(mRadius * Math.sin(Math.toRadians(30d)));
+                    cr = cl + childView.getMeasuredWidth();
+                    cb = ct + childView.getMeasuredHeight();
                     break;
             }
-
-
+            childView.layout(cl,ct,cr,cb);
         }
 
     }

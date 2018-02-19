@@ -6,7 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.edisonliao.zhihudaily.NewsDetailActivity">
 
+    <ImageView
+        android:id="@+id/detail_iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
+    <WebView
+        android:id="@+id/detail_webview"
+        android:layout_below="@id/detail_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

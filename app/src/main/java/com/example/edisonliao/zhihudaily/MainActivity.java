@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements IMainActivityView,View.OnClickListener{
+public class MainActivity extends BaseActivity implements IMainActivityView,View.OnClickListener{
 
     private MainActivityPresenter mMainPresenter;
     @BindView(R.id.banner)
@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
     private NewsScrollView.ScrollOverBannerListener mScrollLinstener = new NewsScrollView.ScrollOverBannerListener() {
         @Override
         public void scrollOverBanner() {
-            setTitle(mNewsTypeTv.getText().toString());
+            setTitleText(mNewsTypeTv.getText().toString());
         }
 
         @Override
         public void scrollReturnToTop() {
-            setTitle(R.string.app_name);
+            setTitleText(getResources().getString(R.string.app_name));
         }
     };
 
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
                 data.setImgUrl(stories.getImages().get(0));
             }
             data.setTxt(stories.getTitle());
+            data.setId(stories.getId());
             list.add(data);
         }
         mAdapter.updateList(list);
