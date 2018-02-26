@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.tencent.tinker.patch'
+//apply plugin: 'com.tencent.tinker.patch'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -42,7 +42,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
     implementation "com.android.support:design:${SUPPORT_V4_VERSION}"
     //可选，用于生成application类
-    provided('com.tencent.tinker:tinker-android-anno:1.9.1')
+//    provided('com.tencent.tinker:tinker-android-anno:1.9.1')
     //tinker的核心库
-    compile('com.tencent.tinker:tinker-android-lib:1.9.1')
+//    compile('com.tencent.tinker:tinker-android-lib:1.9.1')
 }

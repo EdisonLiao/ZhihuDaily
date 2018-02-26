@@ -37,46 +37,46 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/news_type_tv" />
 
-            <com.example.edisonliao.zhihudaily.ui.NewsItemPopup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                app:center_background_color="@color/colorPrimary"
-                app:circle_radius="@dimen/radius">
+            <!--<com.example.edisonliao.zhihudaily.ui.NewsItemPopup-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--app:center_background_color="@color/colorPrimary"-->
+                <!--app:circle_radius="@dimen/radius">-->
 
-            <android.support.design.widget.FloatingActionButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                android:background="@drawable/ic_navigation_name"/>
+            <!--<android.support.design.widget.FloatingActionButton-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                <!--android:background="@drawable/ic_navigation_name"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我是按钮1"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我是按钮1"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="2"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我是按钮3"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我是按钮3"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我是按钮4"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我是按钮4"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我是按钮5"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="我是按钮5"/>-->
 
 
-            </com.example.edisonliao.zhihudaily.ui.NewsItemPopup>
+            <!--</com.example.edisonliao.zhihudaily.ui.NewsItemPopup>-->
 
         </RelativeLayout>
 
